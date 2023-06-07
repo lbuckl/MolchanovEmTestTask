@@ -51,4 +51,5 @@ dependencies {
     //Dagger2
     implementation libs.dagger
     kapt libs.kapt.dagger.compiler
+    kapt libs.kapt.room.compiler
 }
