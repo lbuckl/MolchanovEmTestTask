@@ -1,22 +1,20 @@
 plugins {
-    id 'com.android.application'
+    id 'com.android.library'
     id 'org.jetbrains.kotlin.android'
     id 'kotlin-kapt'
     id 'kotlin-parcelize'
 }
 
 android {
-    namespace 'com.molchanov.molchanovemtesttask'
+    namespace 'com.molchanov.coreui'
     compileSdk buildVer.compileSdk
 
     defaultConfig {
-        applicationId "com.molchanov.molchanovemtesttask"
         minSdk buildVer.minSdk
         targetSdk buildVer.targetSdk
-        versionCode 1
-        versionName "1.0"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        consumerProguardFiles "consumer-rules.pro"
     }
 
     buildTypes {
@@ -40,7 +38,6 @@ android {
 dependencies {
 
     implementation project(':core')
-    implementation project(':coreui')
 
     //core
     implementation libs.androidx.core
@@ -49,13 +46,6 @@ dependencies {
     implementation libs.androidx.appcompat
     implementation libs.androidx.constraintlayout
     implementation libs.android.material
-
-    //Junit
-    testImplementation libs.test.junit
-    androidTestImplementation libs.test.junit.ext
-    //mockito
-    testImplementation libs.test.mockito.core
-    testImplementation libs.test.mockito.inline
 
     //Glide
     implementation libs.glide
