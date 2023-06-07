@@ -1,0 +1,5 @@
+ext.buildVer = [:]
+
+buildVer.minSdk = 26
+buildVer.targetSdk = 33
+buildVer.compileSdk = 33
