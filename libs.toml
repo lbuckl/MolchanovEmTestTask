@@ -24,3 +24,5 @@ retrofit-converter-gson = 'com.squareup.retrofit2:converter-gson:2.9.0'
 retrofit-adapter-rxjava3 = 'com.squareup.retrofit2:adapter-rxjava3:2.9.0'
 retrofit-kotlin-coroutines-adapter = 'com.jakewharton.retrofit:retrofit2-kotlin-coroutines-adapter:0.9.2'
 okhttp3-logging-interceptor = 'com.squareup.okhttp3:logging-interceptor:4.9.2'
+
+gson = 'com.google.code.gson:gson:2.8.5'

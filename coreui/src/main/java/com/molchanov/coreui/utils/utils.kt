@@ -18,14 +18,14 @@ fun View.vision(flag: Int) {
 fun ImageView.loadImageFromUrl(url: Int) {
     Glide.with(context)
         .load(url)
-        .placeholder(R.drawable.ic_no_photo_vector)
+        //.placeholder(R.drawable.ic_no_photo_vector)
         .into(this)
 }
 
 fun ImageView.loadImageFromUrl(url: String) {
     Glide.with(context)
         .load(url)
-        .placeholder(R.drawable.ic_no_photo_vector)
+        //.placeholder(R.drawable.ic_no_photo_vector)
         .into(this)
 }
 

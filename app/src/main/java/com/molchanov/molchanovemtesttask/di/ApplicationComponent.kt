@@ -23,7 +23,7 @@ interface ApplicationComponent: ApplicationProvider {
 
     companion object {
 
-        fun init(app: TestTaskApp): ApplicationProvider { //
+        fun init(app: TestTaskApp): ApplicationProvider {
 
             val androidDependenciesProvider = AndroidDependenciesComponent.create(app)
             val networkProvider = NetworkComponent.create()
