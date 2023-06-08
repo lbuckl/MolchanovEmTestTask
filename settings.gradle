@@ -21,3 +21,4 @@ rootProject.name = "MolchanovEmTestTask"
 include ':app'
 include ':core'
 include ':coreui'
+include ':feature_general'
