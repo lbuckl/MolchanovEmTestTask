@@ -5,6 +5,7 @@ import com.molchanov.core.di.ApplicationProvider
 import com.molchanov.core.di.android.AndroidDependenciesComponent
 import com.molchanov.core.di.network.NetworkComponent
 import com.molchanov.core.di.network.NetworkProvider
+import com.molchanov.coreui.di.ViewModelFactoryModule
 import com.molchanov.molchanovemtesttask.TestTaskApp
 import dagger.Component
 
@@ -14,7 +15,8 @@ import dagger.Component
         NetworkProvider::class
     ],
     modules = [
-        ApplicationModule::class
+        ApplicationModule::class,
+        ViewModelFactoryModule::class
     ]
 )
 interface ApplicationComponent: ApplicationProvider {
