@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">MolchanovEmTestTask</string>
+    <string name="menu_item_general">Главная</string>
+    <string name="menu_item_search">Поиск</string>
+    <string name="menu_item_basket">Корзина</string>
+    <string name="menu_item_account">Аккаунт</string>
 </resources>
