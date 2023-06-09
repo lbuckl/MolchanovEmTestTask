@@ -13,7 +13,7 @@ abstract class BaseViewModel<V : AppState>() : ViewModel() {
 
     protected val compositeDisposable = CompositeDisposable()
 
-    private val liveData: MutableLiveData<V> = MutableLiveData<V>()
+    protected val liveData: MutableLiveData<V> = MutableLiveData<V>()
     val outLiveData: LiveData<V> = liveData
 
     override fun onCleared() {

@@ -5,5 +5,5 @@ import com.google.gson.annotations.SerializedName
 
 data class GeneralMenuDto(
     @SerializedName("сategories")
-    val сategories: List<Сategory>
+    val categories: List<MenuCategory>
 )

@@ -1,22 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <style name="TextStyleFontBold">
-        <item name="android:font">@font/sf_pro_display_bold</item>
-    </style>
-
-    <style name="TextStyleFontRegular">
-        <item name="android:font">@font/sf_pro_display_regular</item>
-    </style>
-
-    <style name="TextStyleFontLight">
-        <item name="android:font">@font/sf_pro_display_bold</item>
-    </style>
-
-    <style name="HeaderStyleDefault" parent="TextStyleFontRegular">
+    <style name="HeaderStyleDefault">
+        <item name="font">@font/sf_pro_display_regular</item>
         <item name="android:textColor">@color/black</item>
     </style>
 
-    <style name="DescriptionStyleDefault" parent="TextStyleFontRegular">
+    <style name="DescriptionStyleDefault">
+        <item name="font">@font/sf_pro_display_regular</item>
         <item name="android:textColor">@color/black</item>
         <item name="android:alpha">0.5</item>
     </style>

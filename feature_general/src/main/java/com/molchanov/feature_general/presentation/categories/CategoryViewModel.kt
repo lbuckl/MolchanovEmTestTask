@@ -4,7 +4,9 @@ import androidx.lifecycle.LiveData
 import com.molchanov.coreui.viewmodel.BaseViewModel
 import com.molchanov.coreui.viewmodel.appdata.SingleNotifyLiveData
 import com.molchanov.coreui.viewmodel.appstate.DefaultAppState
+import com.molchanov.feature_general.data.dto.GeneralMenuDto
 import com.molchanov.feature_general.domain.GeneralRepository
+import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import javax.inject.Inject
 
 class CategoryViewModel @Inject constructor(
@@ -16,12 +18,13 @@ class CategoryViewModel @Inject constructor(
 
     fun getData() {
         repository.getGeneralMenu()
+            .observeOn(AndroidSchedulers.mainThread())
             .subscribe(
                 {
-
+                    liveData.value = DefaultAppState.Success<GeneralMenuDto>(it)
                 },
                 {
-
+                    liveData.value = DefaultAppState.Error(it)
                 }
             ).also { compositeDisposable.add(it) }
     }

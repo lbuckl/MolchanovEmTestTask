@@ -3,7 +3,7 @@ package com.molchanov.feature_general.data.dto
 
 import com.google.gson.annotations.SerializedName
 
-data class Сategory(
+data class MenuCategory(
     @SerializedName("id")
     val id: Int,
     @SerializedName("image_url")
