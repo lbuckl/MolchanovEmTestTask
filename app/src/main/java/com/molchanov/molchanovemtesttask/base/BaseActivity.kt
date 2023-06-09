@@ -3,8 +3,13 @@ package com.molchanov.molchanovemtesttask.base
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.viewbinding.ViewBinding
+import com.molchanov.coreui.router.IRouter
+import javax.inject.Inject
 
 abstract class BaseActivity<T : ViewBinding> : AppCompatActivity() {
+
+    @Inject
+    lateinit var router: IRouter
 
     lateinit var binding: T
 

@@ -2,6 +2,7 @@ package com.molchanov.feature_general.di
 
 import com.molchanov.core.di.ApplicationProvider
 import com.molchanov.coreui.di.RouterModule
+import com.molchanov.feature_general.presentation.categories.CategoryFragment
 import dagger.Component
 
 @Component(
@@ -10,7 +11,8 @@ import dagger.Component
     ],
     modules = [
         RouterModule::class,
-        GeneralApiModule::class
+        GeneralApiModule::class,
+        GeneralViewModelModule::class
     ]
 )
 interface GeneralComponent {
@@ -31,5 +33,5 @@ interface GeneralComponent {
         ): GeneralComponent
     }
 
-    //fun inject (fragment: CharactersFragment)
+    fun inject (fragment: CategoryFragment)
 }

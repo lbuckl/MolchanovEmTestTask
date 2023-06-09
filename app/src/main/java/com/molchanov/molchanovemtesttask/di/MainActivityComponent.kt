@@ -1,6 +1,7 @@
 package com.molchanov.molchanovemtesttask.di
 
 import com.molchanov.core.di.ApplicationProvider
+import com.molchanov.coreui.di.RouterModule
 import com.molchanov.molchanovemtesttask.MainActivity
 import dagger.Component
 import javax.inject.Singleton
@@ -8,7 +9,7 @@ import javax.inject.Singleton
 @Singleton
 @Component(
     modules = [
-        //RouterModule::class
+        RouterModule::class
     ],
     dependencies = [
         ApplicationProvider::class,
