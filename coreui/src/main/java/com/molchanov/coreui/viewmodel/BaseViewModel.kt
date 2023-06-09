@@ -3,24 +3,21 @@ package com.molchanov.coreui.viewmodel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.molchanov.coreui.viewmodel.appstate.AppState
+import io.reactivex.rxjava3.disposables.CompositeDisposable
 
 /**
  * Базовый класс для всех ViewModel работающих с RxJava
  */
 abstract class BaseViewModel<V : AppState>() : ViewModel() {
 
-    protected val liveData: MutableLiveData<V> = MutableLiveData<V>()
+    protected val compositeDisposable = CompositeDisposable()
 
-    private val outLiveData: LiveData<V> by lazy {
-        liveData
-    }
+    private val liveData: MutableLiveData<V> = MutableLiveData<V>()
+    val outLiveData: LiveData<V> = liveData
 
-    abstract fun getData(page: Int)
-
-    fun getMyLiveData(): LiveData<V> {
-
-        if (liveData.value == null) getData(1)
-
-        return outLiveData
+    override fun onCleared() {
+        compositeDisposable.clear()
+        super.onCleared()
     }
 }

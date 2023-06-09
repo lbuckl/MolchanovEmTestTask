@@ -8,6 +8,7 @@ import javax.inject.Inject
 class GeneralRepositoryImpl @Inject constructor(
     private val generalApi: GeneralApi
 ): GeneralRepository {
+
     override fun getGeneralMenu(): Single<GeneralMenuDto>{
         return generalApi.getGeneralMenu()
     }

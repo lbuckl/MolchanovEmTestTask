@@ -12,7 +12,8 @@ import dagger.Component
     modules = [
         RouterModule::class,
         GeneralApiModule::class,
-        GeneralViewModelModule::class
+        GeneralViewModelModule::class,
+        GeneralRepositoryModule::class
     ]
 )
 interface GeneralComponent {
