@@ -14,6 +14,11 @@ interface IRouter {
         fragment: Fragment, tag: String
     )
 
+    fun addNewFragmentAndHideCurrent(
+        fragmentManager: FragmentManager, fragmentRepId: Int,
+        fragment: Fragment, tag: String, fragmentForHideTag: String
+    )
+
     fun replaceFragment(
         fragmentManager: FragmentManager, fragmentRepId: Int,
         fragment: Fragment, tag: String
@@ -26,7 +31,10 @@ interface IRouter {
     )
 
     fun deleteFragment(
-        fragmentManager: FragmentManager, fragmentRepId: Int,
-        fragment: Fragment, tag: String
+        fragmentManager: FragmentManager, fragmentRepId: Int, tag: String
+    )
+
+    fun deleteFragment(
+        fragmentManager: FragmentManager, fragmentRepId: Int, tag: String, showFragmentTag: String
     )
 }

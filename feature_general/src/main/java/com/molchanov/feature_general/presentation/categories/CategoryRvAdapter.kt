@@ -5,7 +5,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.molchanov.coreui.utils.loadImageFromUrl
-import com.molchanov.feature_general.data.dto.MenuCategory
+import com.molchanov.feature_general.data.dto.categories.MenuCategory
 import com.molchanov.feature_general.databinding.FragmentCategoriesRvItemBinding
 
 class CategoryRvAdapter(

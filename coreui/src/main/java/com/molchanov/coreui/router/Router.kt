@@ -25,6 +25,28 @@ class Router @Inject constructor() : IRouter {
         }
     }
 
+    override fun addNewFragmentAndHideCurrent(
+        fragmentManager: FragmentManager, fragmentRepId: Int,
+        fragment: Fragment, tag: String, fragmentForHideTag: String
+    ) {
+        fragmentManager.findFragmentByTag(fragmentForHideTag).let { hideFragment->
+            if (hideFragment != null){
+                val oldFragment = fragmentManager.findFragmentByTag(tag)
+
+                if (oldFragment == null) {
+                    fragmentManager.beginTransaction()
+                        .add(fragmentRepId, fragment, tag)
+                        .hide(hideFragment)
+                        .commit()
+                } else {
+                    fragmentManager.beginTransaction()
+                        .replace(fragmentRepId, oldFragment, tag)
+                        .commit()
+                }
+            }
+        }
+    }
+
     override fun replaceFragment(
         fragmentManager: FragmentManager, fragmentRepId: Int,
         fragment: Fragment, tag: String
@@ -67,13 +89,26 @@ class Router @Inject constructor() : IRouter {
     }
 
     override fun deleteFragment(
-        fragmentManager: FragmentManager, fragmentRepId: Int,
-        fragment: Fragment, tag: String
+        fragmentManager: FragmentManager, fragmentRepId: Int, tag: String
     ) {
 
         fragmentManager.findFragmentByTag(tag)?.let {
             fragmentManager.beginTransaction()
                 .remove(it)
+                .commit()
+        }
+    }
+
+    override fun deleteFragment(
+        fragmentManager: FragmentManager,
+        fragmentRepId: Int,
+        tag: String,
+        showFragmentTag: String
+    ) {
+        fragmentManager.findFragmentByTag(tag)?.let {
+            fragmentManager.beginTransaction()
+                .remove(it)
+                .show(fragmentManager.findFragmentByTag(showFragmentTag)!!)
                 .commit()
         }
     }

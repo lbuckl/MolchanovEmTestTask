@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <com.google.android.material.appbar.MaterialToolbar
+        android:id="@+id/appbar_menu"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/default_toolbar_size"
+        app:layout_constraintEnd_toStartOf="@+id/gl_helper_vertical_end"
+        app:layout_constraintStart_toStartOf="@+id/gl_helper_vertical_start"
+        app:layout_constraintTop_toTopOf="parent"
+        app:titleCentered="true"
+        app:title=""
+        app:navigationIcon="@drawable/ic_arrow_back">
+
+        <ImageView
+            android:id="@+id/appbar_menu_user_icon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end"
+            android:src="@drawable/picture_user"/>
+    </com.google.android.material.appbar.MaterialToolbar>
+
+</LinearLayout>

@@ -1,17 +1,18 @@
 package com.molchanov.feature_general.presentation.categories
 
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.molchanov.core.di.ApplicationProvider
 import com.molchanov.coreui.fragment.BaseVmFragment
 import com.molchanov.coreui.viewmodel.appstate.DefaultAppState
-import com.molchanov.feature_general.data.dto.GeneralMenuDto
-import com.molchanov.feature_general.data.dto.MenuCategory
+import com.molchanov.feature_general.R
+import com.molchanov.feature_general.data.dto.categories.GeneralMenuDto
+import com.molchanov.feature_general.data.dto.categories.MenuCategory
 import com.molchanov.feature_general.databinding.FragmentCategoriesBinding
 import com.molchanov.feature_general.di.GeneralComponent
+import com.molchanov.feature_general.presentation.menu.MenuFragment
 
 class CategoryFragment :
     BaseVmFragment<FragmentCategoriesBinding, DefaultAppState, CategoryViewModel>() {
@@ -66,7 +67,13 @@ class CategoryFragment :
                 //TODO
             }
             CATEGORY_ASIAN -> {
-                //TODO
+                router.addNewFragmentAndHideCurrent(
+                    parentFragmentManager,
+                    com.google.android.material.R.id.container,
+                    MenuFragment.instance,
+                    MenuFragment.FRAGMENT_TAG,
+                    FRAGMENT_TAG
+                )
             }
             CATEGORY_SOUPS -> {
                 //TODO

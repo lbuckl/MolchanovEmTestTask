@@ -1,4 +1,4 @@
-package com.molchanov.feature_general.data.dto
+package com.molchanov.feature_general.data.dto.categories
 
 
 import com.google.gson.annotations.SerializedName
