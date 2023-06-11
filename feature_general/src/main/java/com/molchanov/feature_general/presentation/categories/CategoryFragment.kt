@@ -1,10 +1,16 @@
 package com.molchanov.feature_general.presentation.categories
 
+import android.Manifest
+import android.app.Activity
 import android.os.Bundle
+import android.os.Message
 import android.view.View
+import androidx.core.app.ActivityCompat
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.google.android.material.snackbar.Snackbar
 import com.molchanov.core.di.ApplicationProvider
+import com.molchanov.core.domain.LocationAndDate
 import com.molchanov.coreui.fragment.BaseVmFragment
 import com.molchanov.coreui.viewmodel.appstate.DefaultAppState
 import com.molchanov.feature_general.R
@@ -26,6 +32,8 @@ class CategoryFragment :
         const val CATEGORY_FASTFOOD = 2
         const val CATEGORY_ASIAN = 3
         const val CATEGORY_SOUPS = 4
+
+        const val REQUEST_CODE = 1011
     }
 
     //region fragment initialization
@@ -56,15 +64,16 @@ class CategoryFragment :
 
         initRvAdapter()
         initViewModel()
+        observeLocationPermission()
     }
 
     private fun onRvItemSelected(id: Int) {
         when (id) {
             CATEGORY_BAKERY -> {
-                //TODO
+                showSnackBar("Функционал временно недоступен")
             }
             CATEGORY_FASTFOOD -> {
-                //TODO
+                showSnackBar("Функционал временно недоступен")
             }
             CATEGORY_ASIAN -> {
                 router.addNewFragmentAndHideCurrent(
@@ -76,7 +85,7 @@ class CategoryFragment :
                 )
             }
             CATEGORY_SOUPS -> {
-                //TODO
+                showSnackBar("Функционал временно недоступен")
             }
         }
     }
@@ -89,8 +98,14 @@ class CategoryFragment :
     }
 
     private fun initViewModel() {
+        viewModel.getLocation()
+
         viewModel.outLiveData.observe(viewLifecycleOwner) { state ->
             renderData(state)
+        }
+
+        viewModel.isLoadingEvent.observe(viewLifecycleOwner) { isLoading ->
+            renderLoadingState(isLoading)
         }
     }
 
@@ -101,8 +116,45 @@ class CategoryFragment :
                 rvAdapter.replaceData(data.categories)
             }
             is DefaultAppState.Error -> {
-                //TODO
+                showSnackBar("Ошибка полученяи данных")
             }
         }
+    }
+
+    private fun renderLoadingState(isLoading: Boolean){
+        if (isLoading) binding.progressBar.visibility = View.VISIBLE
+        else binding.progressBar.visibility = View.GONE
+    }
+
+    private fun observeLocationPermission() {
+        viewModel.location.observe(viewLifecycleOwner) {
+            if (it){
+                viewModel.locationLiveData.observe(viewLifecycleOwner) { data ->
+                    renderLocationAndDate(data)
+                }
+            }
+            else {
+                ActivityCompat.requestPermissions(
+                    requireActivity(),
+                    arrayOf(
+                        Manifest.permission.ACCESS_FINE_LOCATION,
+                        Manifest.permission.ACCESS_COARSE_LOCATION
+                    ),
+                    REQUEST_CODE
+                )
+            }
+        }
+    }
+
+    private fun renderLocationAndDate(data: LocationAndDate) {
+        if (data.location.isNotBlank()) binding.included.tvLocationHeader.text = data.location
+        else showSnackBar("Ошибка получения геолокации")
+
+        if (data.date.isNotBlank()) binding.included.tvLocationContent.text = data.date
+        else showSnackBar("Ошибка получения даты")
+    }
+
+    private fun showSnackBar(message: String){
+        Snackbar.make(requireContext(), this.requireView(), message, Snackbar.LENGTH_LONG).show()
     }
 }
