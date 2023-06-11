@@ -7,9 +7,9 @@ import android.view.ViewGroup
 import androidx.viewbinding.ViewBinding
 import com.molchanov.core.di.App
 import com.molchanov.core.di.ApplicationProvider
-import com.molchanov.coreui.viewmodel.appstate.AppState
 import com.molchanov.coreui.viewmodel.BaseViewModel
 import com.molchanov.coreui.viewmodel.ViewModelFactory
+import com.molchanov.coreui.viewmodel.appstate.AppState
 import javax.inject.Inject
 
 /**

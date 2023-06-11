@@ -1,9 +1,7 @@
 package com.molchanov.feature_general.presentation.categories
 
 import android.Manifest
-import android.app.Activity
 import android.os.Bundle
-import android.os.Message
 import android.view.View
 import androidx.core.app.ActivityCompat
 import androidx.fragment.app.viewModels
@@ -13,7 +11,6 @@ import com.molchanov.core.di.ApplicationProvider
 import com.molchanov.core.domain.LocationAndDate
 import com.molchanov.coreui.fragment.BaseVmFragment
 import com.molchanov.coreui.viewmodel.appstate.DefaultAppState
-import com.molchanov.feature_general.R
 import com.molchanov.feature_general.data.dto.categories.GeneralMenuDto
 import com.molchanov.feature_general.data.dto.categories.MenuCategory
 import com.molchanov.feature_general.databinding.FragmentCategoriesBinding

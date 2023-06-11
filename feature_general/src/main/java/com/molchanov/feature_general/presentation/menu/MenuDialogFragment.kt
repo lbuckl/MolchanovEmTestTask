@@ -1,19 +1,16 @@
 package com.molchanov.feature_general.presentation.menu
 
-import android.os.Build
 import android.os.Bundle
 import android.os.Parcelable
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.annotation.RequiresApi
 import androidx.core.os.bundleOf
 import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.FragmentManager
 import androidx.lifecycle.LifecycleOwner
 import com.molchanov.core.extensions.customGetParcelable
 import com.molchanov.coreui.utils.loadImageFromUrl
-import com.molchanov.feature_general.R
 import com.molchanov.feature_general.databinding.FragmentMenuDialogBinding
 import kotlinx.parcelize.Parcelize
 

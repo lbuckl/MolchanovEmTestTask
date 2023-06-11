@@ -7,17 +7,10 @@ import android.location.Geocoder
 import android.location.Location
 import android.location.LocationListener
 import android.location.LocationManager
-import android.util.Log
 import androidx.core.app.ActivityCompat
 import io.reactivex.rxjava3.subjects.BehaviorSubject
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.IO
-import kotlinx.coroutines.launch
 import java.util.*
 import javax.inject.Inject
-
-import kotlin.system.measureTimeMillis
 
 class Geolocation @Inject constructor(
     private val context: Context
