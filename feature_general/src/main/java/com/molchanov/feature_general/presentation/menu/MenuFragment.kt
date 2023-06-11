@@ -4,16 +4,11 @@ import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.GridLayoutManager
-import androidx.recyclerview.widget.LinearLayoutManager
 import com.molchanov.core.di.ApplicationProvider
 import com.molchanov.coreui.fragment.BaseVmFragment
 import com.molchanov.coreui.viewmodel.appstate.DefaultAppState
-import com.molchanov.feature_general.R
-import com.molchanov.feature_general.data.dto.categories.GeneralMenuDto
-import com.molchanov.feature_general.data.dto.categories.MenuCategory
 import com.molchanov.feature_general.data.dto.menu.Dish
 import com.molchanov.feature_general.data.dto.menu.MenuItemsDto
-import com.molchanov.feature_general.databinding.FragmentCategoriesBinding
 import com.molchanov.feature_general.databinding.FragmentMenuBinding
 import com.molchanov.feature_general.di.GeneralComponent
 import com.molchanov.feature_general.presentation.categories.CategoryFragment
@@ -43,7 +38,15 @@ class MenuFragment :
 
     private val onRVItemClickListener = object : MenuRvAdapter.OnListItemClickListener {
         override fun onItemClick(data: Dish) {
-            onRvItemSelected(data.id)
+            onRvItemSelected(
+                UiModelMenuDialog(
+                    data.name,
+                    data.price.toString(),
+                    data.weight.toString(),
+                    data.description,
+                    data.imageUrl
+                )
+            )
         }
     }
 
@@ -58,8 +61,11 @@ class MenuFragment :
         initNavigationButton()
     }
 
-    private fun onRvItemSelected(id: Int) {
-
+    private fun onRvItemSelected(data: UiModelMenuDialog) {
+        MenuDialogFragment.show(
+            childFragmentManager,
+            data
+        )
     }
 
     private fun initRvAdapter() {
