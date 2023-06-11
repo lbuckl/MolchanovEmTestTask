@@ -33,6 +33,11 @@ class CategoryFragment :
         const val CATEGORY_ASIAN = 3
         const val CATEGORY_SOUPS = 4
 
+        const val CATEGORY_NAME_BAKERY = "Пекарни"
+        const val CATEGORY_NAME_FASTFOOD = "Фастфуд"
+        const val CATEGORY_NAME_ASIAN = "Азиатская кухня"
+        const val CATEGORY_NAME_SOUPS = "Супы"
+
         const val REQUEST_CODE = 1011
     }
 
@@ -76,12 +81,17 @@ class CategoryFragment :
                 showSnackBar("Функционал временно недоступен")
             }
             CATEGORY_ASIAN -> {
+                val bundle = Bundle()
+
+                bundle.putString(MenuFragment.FRAGMENT_TAG, CATEGORY_NAME_ASIAN)
+
                 router.addNewFragmentAndHideCurrent(
                     parentFragmentManager,
                     com.google.android.material.R.id.container,
                     MenuFragment.instance,
                     MenuFragment.FRAGMENT_TAG,
-                    FRAGMENT_TAG
+                    FRAGMENT_TAG,
+                    bundle
                 )
             }
             CATEGORY_SOUPS -> {

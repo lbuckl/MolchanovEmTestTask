@@ -41,7 +41,9 @@ class CategoryViewModel @Inject constructor(
                     liveData.value = DefaultAppState.Error(it)
                     _isLoadingEvent.value = false
                 }
-            ).also { compositeDisposable.add(it) }
+            ).also {
+                compositeDisposable.add(it)
+            }
     }
 
     fun getLocation() {

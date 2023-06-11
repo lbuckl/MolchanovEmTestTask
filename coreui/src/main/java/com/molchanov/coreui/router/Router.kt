@@ -25,6 +25,24 @@ class Router @Inject constructor() : IRouter {
         }
     }
 
+    override fun addFragment(
+        fragmentManager: FragmentManager, fragmentRepId: Int,
+        fragment: Fragment, tag: String, message: Bundle
+    ) {
+
+        val oldFragment = fragmentManager.findFragmentByTag(tag)
+
+        if (oldFragment == null) {
+            fragmentManager.beginTransaction()
+                .add(fragmentRepId, fragment::class.java, message, tag)
+                .commit()
+        } else {
+            fragmentManager.beginTransaction()
+                .replace(fragmentRepId, oldFragment::class.java, message, tag)
+                .commit()
+        }
+    }
+
     override fun addNewFragmentAndHideCurrent(
         fragmentManager: FragmentManager, fragmentRepId: Int,
         fragment: Fragment, tag: String, fragmentForHideTag: String
@@ -41,6 +59,28 @@ class Router @Inject constructor() : IRouter {
                 } else {
                     fragmentManager.beginTransaction()
                         .replace(fragmentRepId, oldFragment, tag)
+                        .commit()
+                }
+            }
+        }
+    }
+
+    override fun addNewFragmentAndHideCurrent(
+        fragmentManager: FragmentManager, fragmentRepId: Int,
+        fragment: Fragment, tag: String, fragmentForHideTag: String, message: Bundle
+    ) {
+        fragmentManager.findFragmentByTag(fragmentForHideTag).let { hideFragment->
+            if (hideFragment != null){
+                val oldFragment = fragmentManager.findFragmentByTag(tag)
+
+                if (oldFragment == null) {
+                    fragmentManager.beginTransaction()
+                        .add(fragmentRepId, fragment::class.java, message, tag)
+                        .hide(hideFragment)
+                        .commit()
+                } else {
+                    fragmentManager.beginTransaction()
+                        .replace(fragmentRepId, oldFragment::class.java, message, tag)
                         .commit()
                 }
             }
@@ -65,7 +105,7 @@ class Router @Inject constructor() : IRouter {
         }
     }
 
-    override fun replaceFragmentWithMessage(
+    override fun replaceFragment(
         fragmentManager: FragmentManager, fragmentRepId: Int,
         fragment: Fragment, tag: String,
         message: Bundle

@@ -3,4 +3,10 @@
     <style name="Category_rv_item_theme" parent="HeaderStyleDefault">
         <item name="android:textSize">20sp</item>
     </style>
+
+    <style name="MenuChipStyle" parent="Widget.MaterialComponents.Chip.Choice">
+        <item name="android:textStyle">bold</item>
+        <item name="android:textSize">14sp</item>
+        <item name="chipCornerRadius">10dp</item>
+    </style>
 </resources>

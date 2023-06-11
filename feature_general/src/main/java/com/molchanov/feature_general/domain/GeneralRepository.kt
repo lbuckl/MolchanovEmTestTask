@@ -8,4 +8,8 @@ interface GeneralRepository {
     fun getCategories(): Single<GeneralMenuDto>
 
     fun getAsianMenu(): Single<MenuItemsDto>
+
+    fun getFilteredMenu(filter: String): MenuItemsDto
+
+    fun saveLastMenu(menu: MenuItemsDto)
 }

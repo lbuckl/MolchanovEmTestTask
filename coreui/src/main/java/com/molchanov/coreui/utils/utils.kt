@@ -5,6 +5,8 @@ import android.text.style.ForegroundColorSpan
 import android.view.View
 import android.widget.ImageView
 import com.bumptech.glide.Glide
+import com.bumptech.glide.load.resource.bitmap.RoundedCorners
+import com.bumptech.glide.request.RequestOptions
 import com.molchanov.coreui.R
 
 fun View.vision(flag: Int) {
@@ -26,6 +28,16 @@ fun ImageView.loadImageFromUrl(url: String) {
     Glide.with(context)
         .load(url)
         //.placeholder(R.drawable.ic_no_photo_vector)
+        .into(this)
+}
+
+fun ImageView.loadImageFromUrl(url: String, cornerRadius: Int) {
+
+
+    Glide.with(context)
+        .load(url)
+        .transform(RoundedCorners(cornerRadius))
+        .placeholder(R.drawable.ic_no_photo_vector)
         .into(this)
 }
 

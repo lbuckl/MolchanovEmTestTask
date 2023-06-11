@@ -14,9 +14,19 @@ interface IRouter {
         fragment: Fragment, tag: String
     )
 
+    fun addFragment(
+        fragmentManager: FragmentManager, fragmentRepId: Int,
+        fragment: Fragment, tag: String, message: Bundle
+    )
+
     fun addNewFragmentAndHideCurrent(
         fragmentManager: FragmentManager, fragmentRepId: Int,
         fragment: Fragment, tag: String, fragmentForHideTag: String
+    )
+
+    fun addNewFragmentAndHideCurrent(
+        fragmentManager: FragmentManager, fragmentRepId: Int,
+        fragment: Fragment, tag: String, fragmentForHideTag: String, message: Bundle
     )
 
     fun replaceFragment(
@@ -24,7 +34,7 @@ interface IRouter {
         fragment: Fragment, tag: String
     )
 
-    fun replaceFragmentWithMessage(
+    fun replaceFragment(
         fragmentManager: FragmentManager, fragmentRepId: Int,
         fragment: Fragment, tag: String,
         message: Bundle
