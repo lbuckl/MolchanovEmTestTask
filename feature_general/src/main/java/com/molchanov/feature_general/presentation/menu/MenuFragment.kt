@@ -162,8 +162,7 @@ class MenuFragment :
     private fun renderData(state: DefaultAppState) {
         when(state){
             is DefaultAppState.Success<*> -> {
-                val data = state.data as List<Dish>
-                rvAdapter.replaceData(data)
+                rvAdapter.replaceData(state.data as List<Dish>)
             }
             is DefaultAppState.Error -> {
                 showSnackBar("Ошибка полученяи данных")

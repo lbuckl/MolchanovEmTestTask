@@ -36,8 +36,8 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
         router.addFragment(
             supportFragmentManager,
             R.id.container,
-            CategoryFragment.instance,
-            CategoryFragment.FRAGMENT_TAG,
+            BasketFragment.instance,
+            BasketFragment.FRAGMENT_TAG,
         )
     }
 

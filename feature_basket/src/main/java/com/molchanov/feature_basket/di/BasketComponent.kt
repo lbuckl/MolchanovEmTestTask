@@ -3,6 +3,7 @@ package com.molchanov.feature_basket.di
 import com.molchanov.core.di.ApplicationProvider
 import com.molchanov.coreui.di.RouterModule
 import com.molchanov.feature_basket.presentation.BasketFragment
+import com.molchanov.repository.di.BasketDishRepositoryModule
 import com.molchanov.repository.di.DataBaseModule
 import dagger.Component
 
@@ -15,7 +16,7 @@ import dagger.Component
         BasketRepositoryModule::class,
         BasketViewModelModule::class,
         DataBaseModule::class,
-        BasketRepositoryModule::class
+        BasketDishRepositoryModule::class
     ]
 )
 interface BasketComponent {
