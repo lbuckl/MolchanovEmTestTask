@@ -9,10 +9,11 @@ import com.google.android.material.snackbar.Snackbar
 import com.molchanov.core.di.ApplicationProvider
 import com.molchanov.coreui.fragment.BaseVmFragment
 import com.molchanov.coreui.viewmodel.appstate.DefaultAppState
-import com.molchanov.feature_general.data.dto.menu.Dish
+import com.molchanov.feature_general.data.dto.menu.DishDto
 import com.molchanov.feature_general.data.dto.menu.MenuItemsDto
 import com.molchanov.feature_general.databinding.FragmentMenuBinding
 import com.molchanov.feature_general.di.GeneralComponent
+import com.molchanov.feature_general.domain.Dish
 import com.molchanov.feature_general.presentation.categories.CategoryFragment
 
 class MenuFragment :
@@ -153,8 +154,8 @@ class MenuFragment :
     private fun renderData(state: DefaultAppState) {
         when(state){
             is DefaultAppState.Success<*> -> {
-                val data = state.data as MenuItemsDto
-                rvAdapter.replaceData(data.dishes)
+                val data = state.data as List<Dish>
+                rvAdapter.replaceData(data)
             }
             is DefaultAppState.Error -> {
                 showSnackBar("Ошибка полученяи данных")

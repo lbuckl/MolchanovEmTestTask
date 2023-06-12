@@ -5,6 +5,7 @@ import com.molchanov.coreui.viewmodel.BaseViewModel
 import com.molchanov.coreui.viewmodel.appdata.SingleNotifyLiveData
 import com.molchanov.coreui.viewmodel.appstate.DefaultAppState
 import com.molchanov.feature_general.data.dto.menu.MenuItemsDto
+import com.molchanov.feature_general.domain.Dish
 import com.molchanov.feature_general.domain.GeneralRepository
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import javax.inject.Inject
@@ -22,7 +23,7 @@ class MenuViewModel @Inject constructor(
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe(
                 {
-                    liveData.value = DefaultAppState.Success<MenuItemsDto>(it)
+                    liveData.value = DefaultAppState.Success<List<Dish>>(it)
                     repository.saveLastMenu(it)
                     _isLoadingEvent.value = false
                 },

@@ -5,5 +5,5 @@ import com.google.gson.annotations.SerializedName
 
 data class MenuItemsDto(
     @SerializedName("dishes")
-    val dishes: List<Dish>
+    val dishes: List<DishDto>
 )

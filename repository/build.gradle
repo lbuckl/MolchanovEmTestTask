@@ -6,7 +6,7 @@ plugins {
 }
 
 android {
-    namespace 'com.molchanov.feature_basket'
+    namespace 'com.molchanov.repository'
     compileSdk buildVer.compileSdk
 
     defaultConfig {
@@ -30,28 +30,14 @@ android {
     kotlinOptions {
         jvmTarget = '1.8'
     }
-    buildFeatures {
-        viewBinding true
-    }
 }
 
 dependencies {
 
     implementation project(':core')
-    implementation project(':coreui')
-    implementation project(':repository')
 
     //core
     implementation libs.androidx.core
-
-    //UI
-    implementation libs.androidx.appcompat
-    implementation libs.androidx.constraintlayout
-    implementation libs.android.material
-    implementation libs.fragment.ktx
-
-    //Glide
-    implementation libs.glide
 
     //retrofit
     implementation libs.retrofit

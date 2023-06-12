@@ -7,9 +7,9 @@ import io.reactivex.rxjava3.core.Single
 interface GeneralRepository {
     fun getCategories(): Single<GeneralMenuDto>
 
-    fun getAsianMenu(): Single<MenuItemsDto>
+    fun getAsianMenu(): Single<List<Dish>>
 
-    fun getFilteredMenu(filter: String): MenuItemsDto
+    fun getFilteredMenu(filter: String): List<Dish>
 
-    fun saveLastMenu(menu: MenuItemsDto)
+    fun saveLastMenu(menu: List<Dish>)
 }

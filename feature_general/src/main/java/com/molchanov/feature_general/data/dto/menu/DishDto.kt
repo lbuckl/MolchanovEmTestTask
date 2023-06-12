@@ -3,7 +3,7 @@ package com.molchanov.feature_general.data.dto.menu
 
 import com.google.gson.annotations.SerializedName
 
-data class Dish(
+data class DishDto(
     @SerializedName("description")
     val description: String,
     @SerializedName("id")

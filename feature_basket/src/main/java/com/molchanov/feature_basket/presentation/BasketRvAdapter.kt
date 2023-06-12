@@ -1,25 +1,27 @@
-package com.molchanov.feature_general.presentation.menu
+package com.molchanov.feature_basket.presentation
 
+import android.text.Editable
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.graphics.red
 import androidx.recyclerview.widget.RecyclerView
 import com.molchanov.coreui.utils.loadImageFromUrl
-import com.molchanov.feature_general.databinding.FragmentMenuRvItemBinding
-import com.molchanov.feature_general.domain.Dish
+import com.molchanov.feature_basket.databinding.FragmentBasketRvItemBinding
+import com.molchanov.feature_basket.domain.BasketDish
 
-class MenuRvAdapter(
+class BasketRvAdapter(
     private val callback: OnListItemClickListener
-) : RecyclerView.Adapter<MenuRvAdapter.MenuViewHolder>() {
+) : RecyclerView.Adapter<BasketRvAdapter.MenuViewHolder>() {
 
-    private var menuList: MutableList<Dish> = mutableListOf()
+    private var menuList: MutableList<BasketDish> = mutableListOf()
 
     interface OnListItemClickListener {
-        fun onItemClick(data: Dish)
+        fun onItemClick(data: BasketDish)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MenuViewHolder {
-        val binding = FragmentMenuRvItemBinding.inflate(LayoutInflater.from(parent.context))
+        val binding = FragmentBasketRvItemBinding.inflate(LayoutInflater.from(parent.context))
         return MenuViewHolder(binding.root)
     }
 
@@ -31,7 +33,7 @@ class MenuRvAdapter(
         }
     }
 
-    fun replaceData(menu: List<Dish>) {
+    fun replaceData(menu: List<BasketDish>) {
         menuList = menu.toMutableList()
         notifyDataSetChanged()
     }
@@ -41,10 +43,11 @@ class MenuRvAdapter(
     }
 
     inner class MenuViewHolder(view: View) : RecyclerView.ViewHolder(view){
-        fun bind(data: Dish){
-            FragmentMenuRvItemBinding.bind(itemView).also {
-                it.ivMenuImage.loadImageFromUrl(data.imageUrl)
-                it.tvMenuDescription.text = data.name
+        fun bind(data: BasketDish){
+            FragmentBasketRvItemBinding.bind(itemView).also {
+                it.ivDishImage.loadImageFromUrl(data.imageUrl)
+                it.actDishNum.setText("${data.quantity}")
+                it.tvDishName.text = data.name
             }
         }
     }
