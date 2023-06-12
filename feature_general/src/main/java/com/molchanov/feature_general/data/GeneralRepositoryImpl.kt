@@ -1,17 +1,19 @@
 package com.molchanov.feature_general.data
 
 import com.molchanov.feature_general.data.dto.categories.GeneralMenuDto
-import com.molchanov.feature_general.data.dto.menu.MenuItemsDto
 import com.molchanov.feature_general.domain.Dish
 import com.molchanov.feature_general.domain.GeneralRepository
+import com.molchanov.feature_general.utils.MapperDomainEntity
 import com.molchanov.feature_general.utils.MapperDtoDomain
 import com.molchanov.feature_general.utils.MenuFilter
+import com.molchanov.repository.domain.BasketDishRepository
 import io.reactivex.rxjava3.core.Single
 import io.reactivex.rxjava3.schedulers.Schedulers
 import javax.inject.Inject
 
 class GeneralRepositoryImpl @Inject constructor(
-    private val generalApi: GeneralApi
+    private val generalApi: GeneralApi,
+    private val basketRepository: BasketDishRepository
 ): GeneralRepository {
 
     private var lastMenuItemsDto = listOf<Dish>()
@@ -43,5 +45,11 @@ class GeneralRepositoryImpl @Inject constructor(
 
     override fun saveLastMenu(menu: List<Dish>) {
         lastMenuItemsDto = menu
+    }
+
+    override fun saveDishInBasket(dish: Dish) {
+        basketRepository.addDish(
+            MapperDomainEntity().dishDomainToEntity(dish)
+        )
     }
 }

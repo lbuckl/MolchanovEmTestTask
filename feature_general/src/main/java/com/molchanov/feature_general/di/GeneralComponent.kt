@@ -4,6 +4,8 @@ import com.molchanov.core.di.ApplicationProvider
 import com.molchanov.coreui.di.RouterModule
 import com.molchanov.feature_general.presentation.categories.CategoryFragment
 import com.molchanov.feature_general.presentation.menu.MenuFragment
+import com.molchanov.repository.di.BasketDishRepositoryModule
+import com.molchanov.repository.di.DataBaseModule
 import dagger.Component
 
 @Component(
@@ -15,6 +17,8 @@ import dagger.Component
         GeneralApiModule::class,
         GeneralViewModelModule::class,
         GeneralRepositoryModule::class,
+        DataBaseModule::class,
+        BasketDishRepositoryModule::class
     ]
 )
 interface GeneralComponent {

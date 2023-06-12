@@ -69,4 +69,8 @@ dependencies {
     implementation libs.dagger
     kapt libs.kapt.room.compiler
     kapt libs.kapt.dagger.compiler
+
+    //Room
+    implementation libs.room.runtime
+    implementation libs.room.rxjava3
 }

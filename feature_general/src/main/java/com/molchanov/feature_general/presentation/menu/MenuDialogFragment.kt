@@ -19,33 +19,35 @@ class MenuDialogFragment : DialogFragment() {
     private var _binding: FragmentMenuDialogBinding? = null
     private val binding get() = _binding!!
 
-    private var isTryAgain: Boolean = false
+    private var dishId: Int? = null
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = FragmentMenuDialogBinding.inflate(
-            inflater,
-            container,
-            false
-        )
+        _binding = FragmentMenuDialogBinding.inflate(inflater, container, false)
+
+        initButtons()
+
+        return binding.root
+    }
+
+    private fun initButtons() {
         val uiModelErrorDialog =
             requireArguments().customGetParcelable("ARG_UI_MODEL") as? UiModelMenuDialog
         if (uiModelErrorDialog != null) {
             applyModel(uiModelErrorDialog)
         }
         binding.dialogButton.setOnClickListener {
-            isTryAgain = true
+            dishId = uiModelErrorDialog?.id
             parentFragmentManager.setFragmentResult(
                 REQUEST_KEY,
-                bundleOf(KEY_TRY_AGAIN_RESPONSE to isTryAgain)
+                bundleOf(KEY_ADD_TO_BASKET_RESPONSE to dishId)
             )
             this@MenuDialogFragment.dismiss()
         }
         binding.dialogMenuItemCancel.setOnClickListener { this@MenuDialogFragment.dismiss() }
-        return binding.root
     }
 
     private fun applyModel(uiModelMenuDialog: UiModelMenuDialog) {
@@ -73,7 +75,7 @@ class MenuDialogFragment : DialogFragment() {
     companion object {
         private const val TAG = "ErrorDialogFragment"
         private const val ARG_UI_MODEL = "ARG_UI_MODEL"
-        private const val KEY_TRY_AGAIN_RESPONSE = "KEY_TRY_AGAIN_RESPONSE"
+        private const val KEY_ADD_TO_BASKET_RESPONSE = "KEY_ADD_TO_BASKET_RESPONSE"
         private const val REQUEST_KEY = "$TAG:defaultRequestKey"
 
         fun show(
@@ -88,13 +90,13 @@ class MenuDialogFragment : DialogFragment() {
         fun setupListener(
             manager: FragmentManager,
             lifecycleOwner: LifecycleOwner,
-            listener: (Boolean) -> Unit
+            listener: (Int) -> Unit
         ) {
             manager.setFragmentResultListener(
                 REQUEST_KEY,
                 lifecycleOwner
             ) { _, result ->
-                listener.invoke(result.getBoolean(KEY_TRY_AGAIN_RESPONSE))
+                listener.invoke(result.getInt(KEY_ADD_TO_BASKET_RESPONSE))
             }
         }
     }
@@ -102,6 +104,7 @@ class MenuDialogFragment : DialogFragment() {
 
 @Parcelize
 class UiModelMenuDialog(
+    val id: Int,
     val header: String,
     val price: String,
     val weight: String,

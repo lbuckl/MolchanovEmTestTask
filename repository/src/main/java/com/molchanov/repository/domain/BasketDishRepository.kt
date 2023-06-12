@@ -1,0 +1,15 @@
+package com.molchanov.repository.domain
+
+import com.molchanov.repository.data.entity.DishEntity
+import io.reactivex.rxjava3.core.Single
+
+interface BasketDishRepository {
+
+    fun addDish(dish: DishEntity)
+
+    fun replaceDish(dish: DishEntity)
+
+    fun getDishes(): Single<List<DishEntity>>
+
+    fun deleteDish(dish: DishEntity)
+}

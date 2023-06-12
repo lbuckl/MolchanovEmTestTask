@@ -43,6 +43,7 @@ class MenuFragment :
         override fun onItemClick(data: Dish) {
             onRvItemSelected(
                 UiModelMenuDialog(
+                    data.id,
                     data.name,
                     data.price.toString(),
                     data.weight.toString(),
@@ -73,6 +74,13 @@ class MenuFragment :
             childFragmentManager,
             data
         )
+
+        MenuDialogFragment.setupListener(
+            childFragmentManager,
+            viewLifecycleOwner
+        ){
+            viewModel.saveDishInBasket(it)
+        }
     }
 
     private fun initToolbarTitle() {

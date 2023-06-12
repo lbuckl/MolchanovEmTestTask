@@ -42,6 +42,8 @@ dependencies {
     implementation project(':core')
     implementation project(':coreui')
     implementation project(':feature_general')
+    implementation project(':feature_basket')
+    implementation project(':repository')
 
     //core
     implementation libs.androidx.core

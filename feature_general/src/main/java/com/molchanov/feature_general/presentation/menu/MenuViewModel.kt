@@ -17,6 +17,8 @@ class MenuViewModel @Inject constructor(
     private val _isLoadingEvent = SingleNotifyLiveData<Boolean>()
     val isLoadingEvent: LiveData<Boolean> = _isLoadingEvent
 
+    private var dishList: List<Dish> = listOf()
+
     fun getAsianMenu() {
         _isLoadingEvent.value = true
         repository.getAsianMenu()
@@ -25,6 +27,7 @@ class MenuViewModel @Inject constructor(
                 {
                     liveData.value = DefaultAppState.Success<List<Dish>>(it)
                     repository.saveLastMenu(it)
+                    dishList = it
                     _isLoadingEvent.value = false
                 },
                 {
@@ -42,5 +45,13 @@ class MenuViewModel @Inject constructor(
             repository.getFilteredMenu(variant.filter)
         )
         _isLoadingEvent.value = false
+    }
+
+    fun saveDishInBasket(dishId: Int) {
+        val dish = dishList.find {
+            it.id == dishId
+        }
+
+        repository.saveDishInBasket(dish!!)
     }
 }
