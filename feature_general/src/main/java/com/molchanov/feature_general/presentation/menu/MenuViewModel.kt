@@ -4,7 +4,6 @@ import androidx.lifecycle.LiveData
 import com.molchanov.coreui.viewmodel.BaseViewModel
 import com.molchanov.coreui.viewmodel.appdata.SingleNotifyLiveData
 import com.molchanov.coreui.viewmodel.appstate.DefaultAppState
-import com.molchanov.feature_general.data.dto.menu.MenuItemsDto
 import com.molchanov.feature_general.domain.Dish
 import com.molchanov.feature_general.domain.GeneralRepository
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers

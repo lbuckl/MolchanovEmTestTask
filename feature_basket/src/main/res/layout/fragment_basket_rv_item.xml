@@ -17,11 +17,13 @@
             android:layout_width="52dp"
             android:layout_height="52dp"
             android:layout_centerVertical="true"
-            android:layout_alignParentStart="true"
-            android:src="@drawable/picture_user"/>
+            android:layout_alignParentStart="true" />
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/tv_dish_name"
+            style="@style/BasketDishMainTextStile"
+            android:layout_marginTop="@dimen/margin_small"
+            android:layout_marginStart="@dimen/margin_small"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_toRightOf="@+id/iv_dish_image"
@@ -29,37 +31,34 @@
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/tv_dish_price"
+            style="@style/BasketDishMainTextStile"
+            android:layout_marginStart="@dimen/margin_small"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_toRightOf="@+id/iv_dish_image"
             android:layout_below="@+id/tv_dish_name"
             />
 
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/til_dish_nums"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tv_dish_weight"
+            style="@style/BasketDishSecondTextStile"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@+id/tv_dish_price"
+            android:layout_below="@+id/tv_dish_name"
+            />
+
+        <androidx.appcompat.widget.LinearLayoutCompat
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            app:boxCornerRadiusBottomEnd="10dp"
-            app:boxCornerRadiusBottomStart="10dp"
-            app:boxCornerRadiusTopEnd="10dp"
-            app:boxCornerRadiusTopStart="10dp"
-            app:endIconCheckable="true"
-            app:endIconDrawable="@drawable/ic_plus"
-            app:startIconCheckable="true"
-            app:startIconDrawable="@drawable/ic_minus"
-            android:layout_alignParentEnd="true">
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true">
 
-            <AutoCompleteTextView
-                android:id="@+id/act_dish_num"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:ems="10"
-                android:text="0"
-                android:focusable="false"
-                android:inputType="textPersonName" />
-        </com.google.android.material.textfield.TextInputLayout>
+            <include layout="@layout/selector_num_layout"
+                android:id="@+id/included"/>
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+
     </RelativeLayout>
 </androidx.cardview.widget.CardView>

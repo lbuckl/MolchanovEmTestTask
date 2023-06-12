@@ -8,26 +8,33 @@ import io.reactivex.rxjava3.schedulers.Schedulers
 import javax.inject.Inject
 
 class BasketDishRepositoryImpl @Inject constructor(
-    private val database: BasketDishDb
-    ): BasketDishRepository {
+    database: BasketDishDb
+): BasketDishRepository {
 
     private val dao = database.getDAO()
 
     override fun addDish(dish: DishEntity) {
         Completable.create {
             dao.insertBasketDish(dish)
+            it.onComplete()
         }.subscribeOn(Schedulers.io()).subscribe()
     }
 
-    override fun replaceDish(dish: DishEntity) {
-        TODO("Not yet implemented")
+    override fun replaceDish(dish: DishEntity): Completable {
+        return Completable.create {
+            dao.updateBasketDish(dish)
+            it.onComplete()
+        }.subscribeOn(Schedulers.io())
     }
 
     override fun getDishes(): Single<List<DishEntity>> {
         return dao.queryBasketDishes()
     }
 
-    override fun deleteDish(dish: DishEntity) {
-        TODO("Not yet implemented")
+    override fun deleteDish(dish: DishEntity): Completable {
+        return Completable.create {
+            dao.deleteBasketDish(dish)
+            it.onComplete()
+        }.subscribeOn(Schedulers.io())
     }
 }

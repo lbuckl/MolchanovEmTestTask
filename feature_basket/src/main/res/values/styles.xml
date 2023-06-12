@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="BasketDishMainTextStile" parent="HeaderStyleDefault">
+        <item name="android:textSize">14sp</item>
+    </style>
+
+    <style name="BasketDishSecondTextStile" parent="DescriptionStyleDefault">
+        <item name="android:textSize">14sp</item>
+    </style>
+</resources>

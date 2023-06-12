@@ -46,9 +46,11 @@
         android:id="@+id/btn_pay"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        app:cornerRadius="10dp"
         android:padding="@dimen/margin_large"
         android:layout_marginBottom="@dimen/margin_large"
-        android:text="Добавить в корзину"
+        android:text="@string/pay"
+        android:textAllCaps="false"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/gl_helper_vertical_end"
         app:layout_constraintStart_toStartOf="@+id/gl_helper_vertical_start" />

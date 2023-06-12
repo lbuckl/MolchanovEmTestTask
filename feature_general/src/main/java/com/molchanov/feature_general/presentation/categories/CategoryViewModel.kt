@@ -19,6 +19,10 @@ class CategoryViewModel @Inject constructor(
     private val dateProvider: AppDateLocal
 ): BaseViewModel<DefaultAppState>() {
 
+    init {
+        getLocation()
+    }
+
     private val _isLoadingEvent = SingleNotifyLiveData<Boolean>()
     val isLoadingEvent: LiveData<Boolean> = _isLoadingEvent
 
@@ -46,7 +50,7 @@ class CategoryViewModel @Inject constructor(
             }
     }
 
-    fun getLocation() {
+    private fun getLocation() {
         geolocator.getLocation().let {
             _locationPermission.value = it
             if (it) observeLocationAndDate()

@@ -15,4 +15,15 @@ class MapperDomainEntity {
             dishEntity.quantity
         )
     }
+
+    fun basketDomainToDishEntity(dish: BasketDish): DishEntity {
+        return DishEntity(
+            dish.id,
+            dish.name,
+            dish.price,
+            dish.weight,
+            dish.imageUrl,
+            dish.quantity
+        )
+    }
 }

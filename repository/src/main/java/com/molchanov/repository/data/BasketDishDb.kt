@@ -3,7 +3,6 @@ package com.molchanov.repository.data
 import androidx.room.Database
 import androidx.room.RoomDatabase
 import com.molchanov.repository.data.entity.DishEntity
-import javax.inject.Inject
 
 @Database(
     entities = [

@@ -3,11 +3,13 @@ package com.molchanov.feature_basket.presentation
 import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.viewModels
-import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.google.android.material.snackbar.Snackbar
 import com.molchanov.core.di.ApplicationProvider
+import com.molchanov.core.domain.LocationAndDate
 import com.molchanov.coreui.fragment.BaseVmFragment
 import com.molchanov.coreui.viewmodel.appstate.DefaultAppState
+import com.molchanov.feature_basket.R
 import com.molchanov.feature_basket.databinding.FragmentBasketBinding
 import com.molchanov.feature_basket.di.BasketComponent
 import com.molchanov.feature_basket.domain.BasketDish
@@ -35,8 +37,9 @@ class BasketFragment: BaseVmFragment<FragmentBasketBinding, DefaultAppState, Bas
     //endregion
 
     private val onRVItemClickListener = object : BasketRvAdapter.OnListItemClickListener {
-        override fun onItemClick(data: BasketDish) {
-            //TODO
+        override fun onItemClick(model: BasketRvModel) {
+            if (model.action == BasketRvAdapter.ACTION_PLUS) viewModel.actionPlus(model.data)
+            else viewModel.actionMinus(model.data)
         }
     }
 
@@ -60,6 +63,14 @@ class BasketFragment: BaseVmFragment<FragmentBasketBinding, DefaultAppState, Bas
             renderData(state)
         }
         viewModel.getBasket()
+
+        viewModel.locationLiveData.observe(viewLifecycleOwner) { data ->
+            renderLocationAndDate(data)
+        }
+
+        viewModel.priceLiveData.observe(viewLifecycleOwner) { data->
+            binding.btnPay.text = "${resources.getString(R.string.pay)} $data ₽"
+        }
     }
 
     private fun renderData(state: DefaultAppState){
@@ -68,8 +79,20 @@ class BasketFragment: BaseVmFragment<FragmentBasketBinding, DefaultAppState, Bas
                 rvAdapter.replaceData(state.data as List<BasketDish>)
             }
             is DefaultAppState.Error -> {
-                //TODO
+                showSnackBar("Ошибка получения данных")
             }
         }
+    }
+
+    private fun renderLocationAndDate(data: LocationAndDate) {
+        if (data.location.isNotBlank()) binding.included.tvLocationHeader.text = data.location
+        else showSnackBar("Ошибка получения геолокации")
+
+        if (data.date.isNotBlank()) binding.included.tvLocationContent.text = data.date
+        else showSnackBar("Ошибка получения даты")
+    }
+
+    private fun showSnackBar(message: String){
+        Snackbar.make(requireContext(), this.requireView(), message, Snackbar.LENGTH_LONG).show()
     }
 }

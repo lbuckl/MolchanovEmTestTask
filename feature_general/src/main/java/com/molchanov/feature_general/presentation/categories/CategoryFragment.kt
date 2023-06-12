@@ -105,8 +105,6 @@ class CategoryFragment :
     }
 
     private fun initViewModel() {
-        viewModel.getLocation()
-
         viewModel.outLiveData.observe(viewLifecycleOwner) { state ->
             renderData(state)
         }

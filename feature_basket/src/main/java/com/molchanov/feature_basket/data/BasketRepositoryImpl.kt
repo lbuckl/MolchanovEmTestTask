@@ -25,4 +25,49 @@ class BasketRepositoryImpl @Inject constructor(
                 }
             }
     }
+
+    override fun plusDish(dish: BasketDish): Single<List<BasketDish>> {
+        return replaceBasketDish(dish.copy(quantity = dish.quantity + 1))
+    }
+
+    override fun minusDIsh(dish: BasketDish): Single<List<BasketDish>> {
+        return if (dish.quantity - 1 == 0) {
+            deleteDish(dish)
+        }
+        else replaceBasketDish(dish.copy(quantity = dish.quantity - 1))
+    }
+
+    private fun replaceBasketDish(dish: BasketDish): Single<List<BasketDish>>{
+        return Single.create { emitter->
+            basketDishRepository.replaceDish(
+                MapperDomainEntity().basketDomainToDishEntity(dish)
+            ).doOnComplete {
+                getBasketDish().subscribe(
+                    {
+                        emitter.onSuccess(it)
+                    },
+                    {
+                        emitter.onError(it)
+                    }
+                )
+            }.subscribe()
+        }.subscribeOn(Schedulers.io())
+    }
+
+    private fun deleteDish(dish: BasketDish): Single<List<BasketDish>>{
+        return Single.create { emitter->
+            basketDishRepository.deleteDish(
+                MapperDomainEntity().basketDomainToDishEntity(dish)
+            ).doOnComplete {
+                getBasketDish().subscribe(
+                    {
+                        emitter.onSuccess(it)
+                    },
+                    {
+                        emitter.onError(it)
+                    }
+                )
+            }.subscribe()
+        }.subscribeOn(Schedulers.io())
+    }
 }

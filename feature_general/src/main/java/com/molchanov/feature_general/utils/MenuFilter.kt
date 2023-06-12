@@ -1,7 +1,5 @@
 package com.molchanov.feature_general.utils
 
-import com.molchanov.feature_general.data.dto.menu.DishDto
-import com.molchanov.feature_general.data.dto.menu.MenuItemsDto
 import com.molchanov.feature_general.domain.Dish
 
 class MenuFilter {
