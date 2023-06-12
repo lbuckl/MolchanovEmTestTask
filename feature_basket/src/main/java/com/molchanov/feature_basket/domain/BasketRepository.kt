@@ -1,5 +1,7 @@
 package com.molchanov.feature_basket.domain
 
-interface BasketRepository {
+import io.reactivex.rxjava3.core.Single
 
+interface BasketRepository {
+    fun getBasketDish(): Single<List<BasketDish>>
 }

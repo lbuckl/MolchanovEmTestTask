@@ -2,7 +2,10 @@ package com.molchanov.molchanovemtesttask
 
 import android.content.Context
 import android.os.Bundle
+import android.util.Log
+import android.widget.Toast
 import com.molchanov.core.di.App
+import com.molchanov.feature_basket.presentation.BasketFragment
 import com.molchanov.feature_general.presentation.categories.CategoryFragment
 import com.molchanov.molchanovemtesttask.base.BaseActivity
 import com.molchanov.molchanovemtesttask.databinding.ActivityMainBinding
@@ -43,26 +46,32 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
         initNavigation()
     }
 
-    private fun initNavigation(){
-        with(binding){
-            bnvMain.menu.let { menu ->
-                bnvMain.setOnItemSelectedListener { item ->
-                    when(item){
-                        menu.findItem(R.id.bv_item_general) -> {
-                            //TODO
-                        }
-                        menu.findItem(R.id.bv_item_search) -> {
-                            //TODO
-                        }
-                        menu.findItem(R.id.bv_item_basket) -> {
-                            //TODO
-                        }
-                        menu.findItem(R.id.bv_item_account) -> {
-                            //TODO
-                        }
+    private fun initNavigation() {
+        with(binding) {
+            bnvMain.setOnItemSelectedListener { item ->
+                Log.v("@@@", "item")
+                when (item.itemId) {
+                    R.id.bv_item_general -> {
+                        router.replaceFragment(
+                            supportFragmentManager,
+                            R.id.container,
+                            CategoryFragment.instance,
+                            CategoryFragment.FRAGMENT_TAG,
+                        )
                     }
-                    true
+                    R.id.bv_item_basket -> {
+                        router.replaceFragment(
+                            supportFragmentManager,
+                            R.id.container,
+                            BasketFragment.instance,
+                            BasketFragment.FRAGMENT_TAG,
+                        )
+                    }
+                    else -> {
+                        TODO()
+                    }
                 }
+                true
             }
         }
     }

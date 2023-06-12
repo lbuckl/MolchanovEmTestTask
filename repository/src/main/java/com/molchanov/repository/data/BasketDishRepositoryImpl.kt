@@ -11,10 +11,11 @@ class BasketDishRepositoryImpl @Inject constructor(
     private val database: BasketDishDb
     ): BasketDishRepository {
 
+    private val dao = database.getDAO()
+
     override fun addDish(dish: DishEntity) {
         Completable.create {
-            database.getDAO()
-                .insertBasketDish(dish)
+            dao.insertBasketDish(dish)
         }.subscribeOn(Schedulers.io()).subscribe()
     }
 
@@ -23,7 +24,7 @@ class BasketDishRepositoryImpl @Inject constructor(
     }
 
     override fun getDishes(): Single<List<DishEntity>> {
-        TODO("Not yet implemented")
+        return dao.queryBasketDishes()
     }
 
     override fun deleteDish(dish: DishEntity) {

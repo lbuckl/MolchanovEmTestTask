@@ -9,6 +9,12 @@ import com.molchanov.feature_basket.di.BasketComponent
 
 class BasketFragment: BaseVmFragment<FragmentBasketBinding, DefaultAppState, BasketViewModel>() {
 
+    companion object {
+        val instance = BasketFragment()
+
+        const val FRAGMENT_TAG = "BasketFragment_fragment_tag"
+    }
+
     override val viewModel: BasketViewModel by viewModels {
         viewModelFactory
     }

@@ -14,7 +14,10 @@ interface BasketDishDao {
     fun updateBasketDish(character: DishEntity)
 
     @Query("SELECT * FROM BasketDishTab WHERE id = :id")
-    fun queryCharacterByUrl(id: Int): Single<DishEntity>
+    fun queryBasketDishesById(id: Int): Single<DishEntity>
+
+    @Query("SELECT * FROM BasketDishTab")
+    fun queryBasketDishes(): Single<List<DishEntity>>
 
     @Delete
     fun deleteBasketDish(character: DishEntity)
