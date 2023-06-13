@@ -11,7 +11,6 @@ import com.molchanov.coreui.viewmodel.appstate.DefaultAppState
 import com.molchanov.feature_general.data.dto.categories.GeneralMenuDto
 import com.molchanov.feature_general.domain.GeneralRepository
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
-import io.reactivex.rxjava3.schedulers.Schedulers
 import javax.inject.Inject
 
 class CategoryViewModel @Inject constructor(

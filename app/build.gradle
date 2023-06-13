@@ -53,16 +53,6 @@ dependencies {
     implementation libs.androidx.constraintlayout
     implementation libs.android.material
 
-    //Junit
-    testImplementation libs.test.junit
-    androidTestImplementation libs.test.junit.ext
-    //mockito
-    testImplementation libs.test.mockito.core
-    testImplementation libs.test.mockito.inline
-
-    //Glide
-    implementation libs.glide
-
     //RxJava
     implementation libs.rxjava3.rxandroid
     implementation libs.rxjava3.rxjava
