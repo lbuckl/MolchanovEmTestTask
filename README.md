@@ -21,6 +21,11 @@
 #### - mockito
 #### - glide
 ---
+Модули
+
+![image](https://github.com/lbuckl/MolchanovEmTestTask/assets/11242192/7ee662d0-d5ab-4db2-bd45-b5e41726406d)
+
+
 Категории
 
 ![categoty](https://github.com/lbuckl/MolchanovEmTestTask/assets/11242192/9be5c413-bc3f-4c7e-9f87-8adfcb352098)
