@@ -5,37 +5,47 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:theme="@style/Category_rv_item_theme"
-    app:cardCornerRadius="10dp"
+    app:cardCornerRadius="0dp"
     android:elevation="0dp"
-    android:outlineSpotShadowColor="@color/white"
     android:outlineAmbientShadowColor="@color/white"
+    android:outlineSpotShadowColor="@color/white"
     app:cardUseCompatPadding="true">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <androidx.appcompat.widget.AppCompatImageView
-            android:id="@+id/iv_menu_image"
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cv_image"
             android:layout_width="match_parent"
-            android:layout_height="120dp"
-            android:background="@color/black_alpha_11"
-            android:alpha="0.9"
+            android:layout_height="wrap_content"
+            app:cardCornerRadius="10dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/iv_menu_image"
+                android:layout_width="match_parent"
+                android:layout_height="120dp"
+                android:alpha="0.9"
+                android:background="@color/black_alpha_11"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        </androidx.cardview.widget.CardView>
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/tv_menu_description"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@id/iv_menu_image"
             android:gravity="start|top"
             android:padding="8dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/iv_menu_image" />
+            app:layout_constraintTop_toBottomOf="@+id/cv_image" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

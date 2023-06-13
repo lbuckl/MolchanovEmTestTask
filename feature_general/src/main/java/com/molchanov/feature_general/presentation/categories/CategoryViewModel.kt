@@ -11,6 +11,7 @@ import com.molchanov.coreui.viewmodel.appstate.DefaultAppState
 import com.molchanov.feature_general.data.dto.categories.GeneralMenuDto
 import com.molchanov.feature_general.domain.GeneralRepository
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
+import io.reactivex.rxjava3.schedulers.Schedulers
 import javax.inject.Inject
 
 class CategoryViewModel @Inject constructor(
@@ -18,10 +19,6 @@ class CategoryViewModel @Inject constructor(
     private val geolocator: Geolocation,
     private val dateProvider: AppDateLocal
 ): BaseViewModel<DefaultAppState>() {
-
-    init {
-        getLocation()
-    }
 
     private val _isLoadingEvent = SingleNotifyLiveData<Boolean>()
     val isLoadingEvent: LiveData<Boolean> = _isLoadingEvent
@@ -50,7 +47,7 @@ class CategoryViewModel @Inject constructor(
             }
     }
 
-    private fun getLocation() {
+    fun getLocation() {
         geolocator.getLocation().let {
             _locationPermission.value = it
             if (it) observeLocationAndDate()

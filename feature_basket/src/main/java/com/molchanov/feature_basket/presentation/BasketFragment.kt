@@ -67,6 +67,7 @@ class BasketFragment: BaseVmFragment<FragmentBasketBinding, DefaultAppState, Bas
         viewModel.locationLiveData.observe(viewLifecycleOwner) { data ->
             renderLocationAndDate(data)
         }
+        viewModel.getLocation()
 
         viewModel.priceLiveData.observe(viewLifecycleOwner) { data->
             binding.btnPay.text = "${resources.getString(R.string.pay)} $data ₽"
@@ -86,13 +87,14 @@ class BasketFragment: BaseVmFragment<FragmentBasketBinding, DefaultAppState, Bas
 
     private fun renderLocationAndDate(data: LocationAndDate) {
         if (data.location.isNotBlank()) binding.included.tvLocationHeader.text = data.location
-        else showSnackBar("Ошибка получения геолокации")
 
         if (data.date.isNotBlank()) binding.included.tvLocationContent.text = data.date
         else showSnackBar("Ошибка получения даты")
     }
 
     private fun showSnackBar(message: String){
-        Snackbar.make(requireContext(), this.requireView(), message, Snackbar.LENGTH_LONG).show()
+        Snackbar.make(
+            requireContext(), this.requireView(), message, Snackbar.LENGTH_LONG
+        ).setAnchorView(R.id.btn_pay).show()
     }
 }

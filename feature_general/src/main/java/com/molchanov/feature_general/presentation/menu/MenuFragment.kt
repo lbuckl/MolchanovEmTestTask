@@ -9,6 +9,7 @@ import com.google.android.material.snackbar.Snackbar
 import com.molchanov.core.di.ApplicationProvider
 import com.molchanov.coreui.fragment.BaseVmFragment
 import com.molchanov.coreui.viewmodel.appstate.DefaultAppState
+import com.molchanov.feature_general.R
 import com.molchanov.feature_general.databinding.FragmentMenuBinding
 import com.molchanov.feature_general.di.GeneralComponent
 import com.molchanov.feature_general.domain.Dish
@@ -174,6 +175,8 @@ class MenuFragment :
     }
 
     private fun showSnackBar(message: String){
-        Snackbar.make(requireContext(), this.requireView(), message, Snackbar.LENGTH_LONG).show()
+        Snackbar.make(
+            requireContext(), this.requireView(), message, Snackbar.LENGTH_LONG
+        ).setAnchorView(R.id.progress_bar).show()
     }
 }

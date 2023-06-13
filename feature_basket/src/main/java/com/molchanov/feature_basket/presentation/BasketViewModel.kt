@@ -13,6 +13,7 @@ import com.molchanov.feature_basket.domain.BasketRepository
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.core.SingleObserver
 import io.reactivex.rxjava3.disposables.Disposable
+import io.reactivex.rxjava3.schedulers.Schedulers
 import javax.inject.Inject
 
 class BasketViewModel @Inject constructor(
@@ -20,10 +21,6 @@ class BasketViewModel @Inject constructor(
     private val geolocator: Geolocation,
     private val dateProvider: AppDateLocal
 ) : BaseViewModel<DefaultAppState>() {
-
-    init {
-        getLocation()
-    }
 
     private val _locationLiveData: MutableLiveData<LocationAndDate> = MutableLiveData()
     val locationLiveData: LiveData<LocationAndDate> = _locationLiveData
@@ -72,14 +69,22 @@ class BasketViewModel @Inject constructor(
         return price
     }
 
-    private fun getLocation() {
+    fun getLocation() {
+        _locationLiveData.postValue(LocationAndDate(
+            Geolocation.currentLocation, dateProvider.getDate()
+            )
+        )
+
         geolocator.getLocation().let {
             if (it) observeLocationAndDate()
         }
     }
 
     private fun observeLocationAndDate() {
-        geolocator.getLocationObserver().subscribe(
+        geolocator.getLocationObserver()
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe(
             { location ->
                 _locationLiveData.value = LocationAndDate(
                     location, dateProvider.getDate()

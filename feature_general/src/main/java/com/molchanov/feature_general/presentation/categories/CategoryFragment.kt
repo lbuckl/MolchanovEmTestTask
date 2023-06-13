@@ -11,6 +11,7 @@ import com.molchanov.core.di.ApplicationProvider
 import com.molchanov.core.domain.LocationAndDate
 import com.molchanov.coreui.fragment.BaseVmFragment
 import com.molchanov.coreui.viewmodel.appstate.DefaultAppState
+import com.molchanov.feature_general.R
 import com.molchanov.feature_general.data.dto.categories.GeneralMenuDto
 import com.molchanov.feature_general.data.dto.categories.MenuCategory
 import com.molchanov.feature_general.databinding.FragmentCategoriesBinding
@@ -66,7 +67,6 @@ class CategoryFragment :
 
         initRvAdapter()
         initViewModel()
-        observeLocationPermission()
     }
 
     private fun onRvItemSelected(id: Int) {
@@ -105,6 +105,9 @@ class CategoryFragment :
     }
 
     private fun initViewModel() {
+        observeLocationPermission()
+        viewModel.getLocation()
+
         viewModel.outLiveData.observe(viewLifecycleOwner) { state ->
             renderData(state)
         }
@@ -160,6 +163,8 @@ class CategoryFragment :
     }
 
     private fun showSnackBar(message: String){
-        Snackbar.make(requireContext(), this.requireView(), message, Snackbar.LENGTH_LONG).show()
+        Snackbar.make(
+            requireContext(), this.requireView(), message, Snackbar.LENGTH_LONG
+        ).setAnchorView(R.id.progress_bar).show()
     }
 }

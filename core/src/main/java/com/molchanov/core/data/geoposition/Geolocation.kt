@@ -16,6 +16,10 @@ class Geolocation @Inject constructor(
     private val context: Context
     ) {
 
+    companion object {
+        var currentLocation = ""
+    }
+
     private lateinit var locationManager: LocationManager
 
     private val statusSubject: BehaviorSubject<String> =
@@ -63,6 +67,7 @@ class Geolocation @Inject constructor(
 
         if (address != null) {
             statusSubject.onNext("${address[0]?.locality}")
+            currentLocation = address[0]?.locality!!
         }
     }
 

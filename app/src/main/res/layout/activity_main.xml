@@ -4,6 +4,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     tools:context=".MainActivity"
+    tools:viewBindingIgnore="false"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -18,9 +19,10 @@
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bnv_main"
-        style="@style/Widget.MaterialComponents.BottomNavigationView"
+        android:theme="@style/Theme.MolchanovEmTestTask"
+        style="@style/Widget.Material3.BottomNavigationView.ActiveIndicator"
         android:layout_width="match_parent"
-        android:layout_height="68dp"
+        android:layout_height="wrap_content"
         android:clickable="true"
         app:labelVisibilityMode="labeled"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -29,4 +31,5 @@
         app:menu="@menu/menu_bottom_navigation_view"
         >
     </com.google.android.material.bottomnavigation.BottomNavigationView>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

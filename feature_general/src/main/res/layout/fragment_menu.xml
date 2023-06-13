@@ -22,45 +22,55 @@
             app:layout_constraintTop_toTopOf="parent" />
     </FrameLayout>
 
-    <com.google.android.material.chip.ChipGroup
-        android:id="@+id/chip_group_variations"
+    <HorizontalScrollView
+        android:id="@+id/chip_group_scroll"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        app:singleSelection="true"
+        android:scrollbars="none"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/gl_helper_vertical_end"
         app:layout_constraintStart_toStartOf="@+id/gl_helper_vertical_start"
-        app:layout_constraintTop_toBottomOf="@+id/frameLayout">
+        app:layout_constraintTop_toBottomOf="@+id/frameLayout"
+        >
 
-        <com.google.android.material.chip.Chip
-            android:id="@+id/chip_menu_all"
-            style="@style/MenuChipStyle"
+        <com.google.android.material.chip.ChipGroup
+            android:id="@+id/chip_group_variations"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Всё меню" />
+            app:singleSelection="true">
 
-        <com.google.android.material.chip.Chip
-            android:id="@+id/chip_menu_salad"
-            style="@style/MenuChipStyle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Салаты" />
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chip_menu_all"
+                style="@style/MenuChipStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/chip_all_menu" />
 
-        <com.google.android.material.chip.Chip
-            android:id="@+id/chip_menu_rise"
-            style="@style/MenuChipStyle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="С рисом" />
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chip_menu_salad"
+                style="@style/MenuChipStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/chip_salads" />
 
-        <com.google.android.material.chip.Chip
-            android:id="@+id/chip_menu_fish"
-            style="@style/MenuChipStyle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="С рыбой" />
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chip_menu_rise"
+                style="@style/MenuChipStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/chip_rise" />
 
-    </com.google.android.material.chip.ChipGroup>
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chip_menu_fish"
+                style="@style/MenuChipStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/chip_fish" />
+
+        </com.google.android.material.chip.ChipGroup>
+    </HorizontalScrollView>
+
+
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_categories"
@@ -70,7 +80,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/gl_helper_vertical_end"
         app:layout_constraintStart_toStartOf="@+id/gl_helper_vertical_start"
-        app:layout_constraintTop_toBottomOf="@+id/chip_group_variations" />
+        app:layout_constraintTop_toBottomOf="@+id/chip_group_scroll" />
 
     <ProgressBar
         android:id="@+id/progress_bar"

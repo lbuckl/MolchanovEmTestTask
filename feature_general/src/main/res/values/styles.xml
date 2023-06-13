@@ -9,4 +9,22 @@
         <item name="android:textSize">14sp</item>
         <item name="chipCornerRadius">10dp</item>
     </style>
+
+    <style name="Dialog_header_style" parent="HeaderStyleDefault">
+        <item name="android:textSize">26sp</item>
+    </style>
+
+    <style name="Dialog_description_style" parent="HeaderStyleDefault">
+        <item name="android:textSize">18sp</item>
+    </style>
+
+    <style name="Dialog_description_alpha_33_style" parent="HeaderStyleDefault">
+        <item name="android:textSize">18sp</item>
+        <item name="android:alpha">0.3</item>
+    </style>
+
+    <style name="Dialog_description_alpha_AA_style" parent="HeaderStyleDefault">
+        <item name="android:textSize">18sp</item>
+        <item name="android:alpha">0.7</item>
+    </style>
 </resources>

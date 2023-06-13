@@ -1,23 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
+<FrameLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:gravity="center"
-    android:orientation="vertical">
+    android:layout_height="match_parent">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/margin_large"
+        android:orientation="vertical">
 
     <androidx.cardview.widget.CardView
         android:id="@+id/card_menu_item"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:backgroundTint="@color/black_alpha_11"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
         app:cardCornerRadius="10dp"
         app:cardElevation="0dp"
-        android:layout_margin="@dimen/margin_large"
+        android:layout_marginBottom="@dimen/margin_default"
         app:cardUseCompatPadding="false"
         app:layout_constraintTop_toTopOf="parent">
 
@@ -60,26 +66,15 @@
         </RelativeLayout>
     </androidx.cardview.widget.CardView>
 
-    <androidx.appcompat.widget.LinearLayoutCompat
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:layout_margin="@dimen/margin_large"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/card_menu_item">
-
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/dialog_header"
-            android:layout_width="350dp"
+            style="@style/Dialog_header_style"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:fontFamily="@font/sf_pro_display_regular"
             android:gravity="start"
-            android:textColor="@color/black"
-            android:textSize="26sp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/card_menu_item"
-            tools:text="Описание" />
+            app:layout_constraintTop_toBottomOf="@+id/card_menu_item" />
 
         <androidx.appcompat.widget.LinearLayoutCompat
             android:layout_width="match_parent"
@@ -92,22 +87,16 @@
                 android:id="@+id/dialog_price"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:fontFamily="@font/sf_pro_display_regular"
-                android:gravity="start"
-                android:textColor="@color/black"
-                android:textSize="16sp"
-                tools:text="Цена" />
+                style="@style/Dialog_description_style"
+                android:gravity="start" />
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/dialog_weight"
-                android:layout_width="230dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:fontFamily="@font/sf_pro_display_regular"
-                android:paddingStart="@dimen/margin_small"
+                style="@style/Dialog_description_alpha_33_style"
                 android:gravity="start"
-                android:textColor="@color/black_alpha_77"
-                android:textSize="16sp"
-                tools:text="Цена" />
+                android:paddingStart="@dimen/margin_small" />
 
         </androidx.appcompat.widget.LinearLayoutCompat>
 
@@ -115,28 +104,26 @@
             android:id="@+id/dialog_description"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:fontFamily="@font/sf_pro_display_regular"
+            style="@style/Dialog_description_alpha_AA_style"
             android:gravity="start"
-            android:text="Какое-то описание"
-            android:textColor="@color/black_alpha_AA"
-            android:textSize="16sp" />
+             />
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/dialog_button"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Добавить в корзину"
-            android:textAllCaps="false"
-            android:fontFamily="@font/sf_pro_display_bold"
-            app:cornerRadius="10dp"
-            android:textSize="16sp"
             android:layout_marginTop="@dimen/margin_large"
+            android:fontFamily="@font/sf_pro_display_bold"
             android:padding="@dimen/margin_large"
-            />
+            android:text="@string/add_to_basket"
+            android:textAllCaps="false"
+            android:textSize="16sp"
+            app:cornerRadius="10dp" />
 
         <TextView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content" />
 
     </androidx.appcompat.widget.LinearLayoutCompat>
-</androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
+</FrameLayout>
