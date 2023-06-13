@@ -3,6 +3,8 @@ package com.molchanov.feature_basket.presentation
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.recyclerview.widget.DiffUtil
+import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.molchanov.coreui.utils.loadImageFromUrl
 import com.molchanov.feature_basket.databinding.FragmentBasketRvItemBinding
@@ -10,14 +12,12 @@ import com.molchanov.feature_basket.domain.BasketDish
 
 class BasketRvAdapter(
     private val callback: OnListItemClickListener
-) : RecyclerView.Adapter<BasketRvAdapter.MenuViewHolder>() {
+) : ListAdapter<BasketDish, BasketRvAdapter.MenuViewHolder>(DiffUtilCallBack()) {
 
     companion object {
         const val ACTION_MINUS = false
         const val ACTION_PLUS = true
     }
-
-    private var menuList: MutableList<BasketDish> = mutableListOf()
 
     interface OnListItemClickListener {
         fun onItemClick(model: BasketRvModel)
@@ -29,16 +29,7 @@ class BasketRvAdapter(
     }
 
     override fun onBindViewHolder(holder: MenuViewHolder, position: Int) {
-        holder.bind(menuList[position])
-    }
-
-    fun replaceData(menu: List<BasketDish>) {
-        menuList = menu.toMutableList()
-        notifyDataSetChanged()
-    }
-
-    override fun getItemCount(): Int {
-        return menuList.size
+        holder.bind(currentList[position])
     }
 
     inner class MenuViewHolder(view: View) : RecyclerView.ViewHolder(view){
@@ -57,6 +48,22 @@ class BasketRvAdapter(
                     callback.onItemClick(BasketRvModel(data, ACTION_PLUS))
                 }
             }
+        }
+    }
+
+    private class DiffUtilCallBack : DiffUtil.ItemCallback<BasketDish>() {
+        override fun areItemsTheSame(
+            oldItem: BasketDish,
+            newItem: BasketDish
+        ): Boolean {
+            return (oldItem.id == newItem.id)
+        }
+
+        override fun areContentsTheSame(
+            oldItem: BasketDish,
+            newItem: BasketDish
+        ): Boolean {
+            return (oldItem == newItem)
         }
     }
 }

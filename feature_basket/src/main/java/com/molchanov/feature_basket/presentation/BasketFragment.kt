@@ -77,7 +77,7 @@ class BasketFragment: BaseVmFragment<FragmentBasketBinding, DefaultAppState, Bas
     private fun renderData(state: DefaultAppState){
         when(state){
             is DefaultAppState.Success<*> -> {
-                rvAdapter.replaceData(state.data as List<BasketDish>)
+                rvAdapter.submitList(state.data as List<BasketDish>)
             }
             is DefaultAppState.Error -> {
                 showSnackBar("Ошибка получения данных")
